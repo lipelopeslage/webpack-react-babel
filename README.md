@@ -1,17 +1,21 @@
-# Webpack+React
+# Webpack+React+Babel (es5)
 
-##### Conversão de módulos em CommonJS e syntax-sugar React (JSX), para um único bundle, via um webpack loader chamado 'jsx-loader'.
+##### Conversão de módulos CommonJS + syntax-sugar React (JSX), para um único bundle, via um webpack loader chamado 'babel-loader'.
 
 Versões de módulos NPM utilizadas neste exemplo:
 
- * React-addons/React-DOM: ~0.14.7
- * Webpack
- * jsx-loader
+ * react/react-dom: ~0.14.7
+ * webpack: ^1.12.14
+ * babel-core: ^6.7.4
+ * babel-loader: ^6.2.4
+ * babel-preset-react: ^6.5.0
 
-###  Atenção: Este repositório usa um loader descontinuado, chamado [jsx-loader](https://github.com/petehunt/jsx-loader). Porém, foi o único jeito encontrado (até o momento) de se fazer funcionar sem a utilização do ecmascript 6.  
 
-###  [Clique aqui](http://lipelopeslage.com.br/jobs/github/webpack-react/) e veja o exemplo.
-
+### Como usar:
+Para instalar as dependências necessárias deste exemplo, clone este repositório e execute `npm i`.
+Após as dependências instaladas, digite `webpack` para compilar os módulos ou `webpack --watch` para ir compilando novos bundles conforme suas modificações no projeto.
+ 
+####  [Clique aqui](http://lipelopeslage.com.br/jobs/github/webpack-react-babel/) e veja o exemplo.
 
 Os componentes ReactJS são escritos de acordo com o formato JSX.
 Veja um exemplo de componente abaixo:
@@ -36,12 +40,12 @@ módulos a serem carregados.
 
 ```javascript
 // Conteúdo do módulo index.js (em Common.js)
-require('../components/IndexComponent.jsx');
+require('../components/IndexComponent.js');
 ```
 
 
 
-Veja abaixo um exemplo de arquivo webpack.config.js, a utilização do objeto 'module .. loaders', que mostra a utilização do loader jsx-loader para a conversão de arquivos JSX:
+Veja abaixo um exemplo de arquivo webpack.config.js, a utilização do objeto 'module .. loaders', que mostra a utilização do loader babel para a conversão de arquivos contendo JSX:
 ```javascript
 module.exports = {
   entry: {
@@ -52,14 +56,21 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      { test: /\.jsx$/, loader: 'jsx-loader' }
-    ]
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query:{
+        presets: ['react']
+      }
+    }]
   }
 };
 ```
 
-O arquivo acima compacta o módulo main.js, e todos os módulos dentro dele (inclusive os arquivos .jsx) em um arquivo bundle.js, na pasta /build.
+### ** Os arquivos com sintaxe JSX devem estar salvos com extensão `.js`
+
+O arquivo acima compacta o módulo main.js, e todos os módulos dentro dele em um arquivo bundle.js, na pasta /build.
 
 ### O arquivo **bundle.js** deve ser importado no arquivo html principal, pois este possui todos os arquivos compactados ###
 
@@ -71,5 +82,5 @@ O arquivo acima compacta o módulo main.js, e todos os módulos dentro dele (inc
 * [npm](https://www.npmjs.com/) para dependências (package.json)
 * [webpack-howto](https://github.com/petehunt/webpack-howto) ótimo tutorial de webpack para iniciantes
 * [webpack-loaders](https://webpack.github.io/docs/list-of-loaders.html) lista de loaders, que juntos ao à configuração do webpack, auxiliam na obtenção de comportamentos extras
-* [jsx-loader](https://github.com/petehunt/jsx-loader) ajuda a converter rquivos jsx em js para o bundle final
-* [react](https://facebook.github.io/react/) para criação de componentes em JSX
+* [babel-loader](https://github.com/babel/babel-loader) essencial para a conversão da sintaxe JSX em createElement
+* [reactjs-workflow](https://github.com/fdaciuk/reactjs-workflow) repositório de Fernando Daciuk, de grande ajuda para a elaboração deste exemplo

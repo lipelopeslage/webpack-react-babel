@@ -1,3 +1,6 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+
 var PowerRanger = React.createClass({
 	render: function(){
 		return(
@@ -24,7 +27,7 @@ var ContactComponent = React.createClass({
 	render: function(){
 		return (
 			<div className="module-holder">
-				<h1 className="page-header">Contact</h1>
+				<h1 className="page-header">Contact (babel)</h1>
 				<br/><br/>
 				<p className="well">
 					<a onClick={this.clickHandler}>Show me the power rangers real names!</a>
