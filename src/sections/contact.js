@@ -1,0 +1,1 @@
+require('../components/ContactComponent.js');

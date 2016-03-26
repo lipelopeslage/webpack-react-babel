@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pr-BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Exemplo utilizando sintaxe sugar do ReactJS, Babel e CommonJS.</title>
+	
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+	<script src="node_modules/react/dist/react-with-addons.min.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.min.js"></script>
+
+
+	<style>
+		body{
+			visibility: hidden;
+		}
+		.module-holder{
+			padding-bottom: 100px;
+		}
+		.module-holder a{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<main class="container text-center"></main>
+	<footer class="container text-center">
+		Exemplo feito em <a href="https://webpack.github.io/docs/commonjs.html" target="_blank">CommonJS</a> e ReactJS, via <a href="https://babeljs.io/docs/plugins/preset-react/" target="_blank">babel-presect-react</a> e compactados via <a href="https://github.com/petehunt/webpack-howto" target="_blank">webpack</a><br>
+		Agradecimentos a <a href="https://github.com/fdaciuk/reactjs-workflow" target="_blank">Fernando Daciuk</a>
+	</footer>
+	<script src="build/bundle.js"></script>
+</body>
+</html>
